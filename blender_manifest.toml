@@ -1,0 +1,36 @@
+schema_version = "1.0.0"
+
+id = "tick"
+version = "1.0.0"
+name = "Tick"
+tagline = "Active time tracker with session history for Blender projects"
+maintainer = "DMWorks Studio"
+type = "add-on"
+
+website = "https://github.com/DenisMaydenkov/tick"
+
+tags = ["User Interface"]
+
+blender_version_min = "4.2.0"
+
+license = [
+  "SPDX:GPL-3.0-or-later",
+]
+copyright = [
+  "2026 Denis Maidenkov, DMWorks Studio",
+  "2013 Marcin Zielinski",
+]
+
+[build]
+paths_exclude_pattern = [
+  "__pycache__/",
+  "/.git/",
+  "/.github/",
+  "/dist/",
+  "/docs/",
+  "*.zip",
+  ".DS_Store",
+  "README.md",
+  "CHANGELOG.md",
+  ".gitignore",
+]

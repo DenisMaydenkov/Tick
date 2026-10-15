@@ -1,0 +1,27 @@
+Tick - active time tracker with session history for Blender projects
+Copyright (C) 2026 Denis Maidenkov, DMWorks Studio
+
+Based on "Project Timer" by Marcin Zielinski,
+Copyright (C) 2013, licensed under GPL-3.0-or-later.
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program. If not, see <https://www.gnu.org/licenses/>.
+
+Additional terms (GNU GPL v3, section 7):
+ 1. This copyright notice and the author attribution must be preserved
+    in all copies and modified versions.
+ 2. Modified versions must be clearly marked as modified and must not be
+    presented as the original Tick or as the work of Denis Maidenkov
+    or DMWorks Studio.
+ 3. No rights are granted to use the names "Tick" and "DMWorks Studio"
+    as trademarks or product names of modified versions.
