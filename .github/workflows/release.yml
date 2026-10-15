@@ -1,0 +1,52 @@
+name: Release
+
+on:
+  push:
+    branches: [main]
+    paths: [blender_manifest.toml, .github/workflows/release.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Read version
+        id: v
+        run: |
+          VER=$(python3 -c "import tomllib;print(tomllib.load(open('blender_manifest.toml','rb'))['version'])")
+          echo "version=$VER" >> "$GITHUB_OUTPUT"
+
+      - name: Skip if release exists
+        id: check
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh release view "v${{ steps.v.outputs.version }}" >/dev/null 2>&1; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Build
+        if: steps.check.outputs.exists == 'false'
+        run: |
+          mkdir dist
+          zip -X dist/tick-${{ steps.v.outputs.version }}.zip blender_manifest.toml __init__.py LICENSE
+          cp __init__.py dist/Tick.py
+
+      - name: Publish release
+        if: steps.check.outputs.exists == 'false'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          VER=${{ steps.v.outputs.version }}
+          gh release create "v$VER" \
+            --title "Tick $VER" \
+            --notes-file .github/RELEASE_NOTES.md \
+            --target "${{ github.sha }}" \
+            dist/tick-$VER.zip dist/Tick.py
